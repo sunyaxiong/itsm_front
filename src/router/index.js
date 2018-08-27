@@ -5,7 +5,7 @@ import App from '../App'
 // import Index from '@/components/Index'
 import Events from '../components/events/events'
 import Changes from '../components/changes/changes'
-import List from '../components/releases/list'
+import List from '../components/list'
 import Detail from '../components/detail'
 
 Vue.use(Router)
@@ -30,7 +30,7 @@ export default new Router({
       component: List
     },
     {
-      path: '/events/detail',
+      path: '/rest/event/:eventId',
       name: 'eventdetail',
       component: Detail
     },

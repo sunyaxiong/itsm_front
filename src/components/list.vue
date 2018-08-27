@@ -18,12 +18,19 @@
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
-                <tbody><tr>
+                <tbody v-for="item in listData"><tr>
                   <th>ID</th>
                   <th>事件名称</th>
                   <th>创建时间</th>
                   <th>状态</th>
-                  <th>服务等级</th>
+                  <th>描述</th>
+                </tr>
+                <tr>
+                  <td>{{item.id}}</td>
+                  <td><router-link :to="'/rest/event/' + item.id">{{item.name}}</router-link></td>
+                  <td>{{item.dt_created}}</td>
+                  <td><span class="label label-warning">{{item.state}}</span></td>
+                  <td>{{item.description}}</td>
                 </tr>
                 <tr>
                   <td>183</td>
@@ -50,8 +57,34 @@
 </template>
 
 <script>
+
+import { queryEventList } from '../api/api'
 export default {
   name: 'List',
+  data () {
+    return {
+      next: '',
+      previous: '',
+      listData: '',
+    }
+  },
+  created () {
+    this.getData ();
+  },
+  methods: {
+    getData() {
+      
+      queryEventList({
+        
+      }).then((response)=> {
+        console.log(response)
+        this.listData = response.data.results;
+        console.log(this.listData.data)
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  },
 }
 </script>
 

@@ -5,7 +5,7 @@
       <div class="col-xs-12">
         <h2 class="page-header">
           <i class="fa fa-globe"></i> 事件详情
-          <small class="pull-right">Date: 2/10/2014</small>
+          <small class="pull-right">创建时间: {{eventDetail.dt_created}}</small>
         </h2>
       </div>
       <!-- /.col -->
@@ -13,33 +13,24 @@
     <!-- info row -->
     <div class="row invoice-info">
       <div class="col-sm-4 invoice-col">
-        From
+        事件名称
         <address>
-          <strong>Admin, Inc.</strong><br>
-          795 Folsom Ave, Suite 600<br>
-          San Francisco, CA 94107<br>
-          Phone: (804) 123-5432<br>
-          Email: info@almasaeedstudio.com
+          <strong>{{eventDetail.name}}</strong>
         </address>
       </div>
       <!-- /.col -->
       <div class="col-sm-4 invoice-col">
-        To
+        状态
         <address>
-          <strong>John Doe</strong><br>
-          795 Folsom Ave, Suite 600<br>
-          San Francisco, CA 94107<br>
-          Phone: (555) 539-1037<br>
-          Email: john.doe@example.com
+          <strong>{{eventDetail.state}}</strong><br>
         </address>
       </div>
       <!-- /.col -->
       <div class="col-sm-4 invoice-col">
-        <b>Invoice #007612</b><br>
-        <br>
-        <b>Order ID:</b> 4F3S8J<br>
-        <b>Payment Due:</b> 2/22/2014<br>
-        <b>Account:</b> 968-34567
+        位于
+        <address>
+          <strong>{{eventDetail.located_in}}</strong><br>
+        </address>
       </div>
       <!-- /.col -->
     </div>
@@ -48,47 +39,37 @@
     <!-- Table row -->
     <div class="row">
       <div class="col-xs-12 table-responsive">
-        <table class="table table-striped">
-          <thead>
-          <tr>
-            <th>Qty</th>
-            <th>Product</th>
-            <th>Serial #</th>
-            <th>Description</th>
-            <th>Subtotal</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>1</td>
-            <td>Call of Duty</td>
-            <td>455-981-221</td>
-            <td>El snort testosterone trophy driving gloves handsome</td>
-            <td>$64.50</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Need for Speed IV</td>
-            <td>247-925-726</td>
-            <td>Wes Anderson umami biodiesel</td>
-            <td>$50.00</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Monsters DVD</td>
-            <td>735-845-642</td>
-            <td>Terry Richardson helvetica tousled street art master</td>
-            <td>$10.70</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Grown Ups Blue Ray</td>
-            <td>422-568-642</td>
-            <td>Tousled lomo letterpress</td>
-            <td>$25.99</td>
-          </tr>
-          </tbody>
-        </table>
+        <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">处理记录</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table class="table table-bordered">
+                <tbody><tr>
+                  <th style="width: 10px">#</th>
+                  <th>执行人</th>
+                  <th>动作</th>
+                  <th style="width: 40px">时间</th>
+                </tr>
+                <tr>
+                  <td>1.</td>
+                  <td>张三</td>
+                  <td>Update software</td>
+                  <td><span class="badge bg-red">55%</span></td>
+                </tr>
+                
+              </tbody></table>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+              <ul class="pagination pagination-sm no-margin pull-right">
+                <li><a href="#">«</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+              </ul>
+            </div>
+          </div>
       </div>
       <!-- /.col -->
     </div>
@@ -151,8 +132,30 @@
   </section>
 </template>
 <script>
+  import { getEventDetail } from '../api/api'
 	export default{
-		name: "Detail"
+		name: "Detail",
+    data () {
+      return {
+        eventDetail: '',
+      }
+    },
+    created () {
+      this.eventId = this.$route.params.eventId;
+      this.getDetails ();
+    },
+    methods: {
+      getDetails () { //  请求事件详情
+        console.log(this.eventId);
+        getEventDetail(this.eventId)
+          .then((response)=> {
+            console.log(response.data);
+            this.eventDetail = response.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
+      },
+    },
 	}
 </script>
 <style>
