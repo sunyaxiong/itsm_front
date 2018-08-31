@@ -46,17 +46,17 @@
             <!-- /.box-header -->
             <div class="box-body">
               <table class="table table-bordered">
-                <tbody><tr>
+                <tbody v-for="log in eventLogDetail"><tr>
                   <th style="width: 10px">#</th>
                   <th>执行人</th>
                   <th>动作</th>
                   <th style="width: 40px">时间</th>
                 </tr>
                 <tr>
-                  <td>1.</td>
-                  <td>张三</td>
-                  <td>Update software</td>
-                  <td><span class="badge bg-red">55%</span></td>
+                  <td>{{log.id}}</td>
+                  <td>{{log.username}}</td>
+                  <td>{{log.content}}</td>
+                  <td><span class="badge bg-red">{{log.dt_created}}</span></td>
                 </tr>
                 
               </tbody></table>
@@ -132,12 +132,14 @@
   </section>
 </template>
 <script>
-  import { getEventDetail } from '../api/api'
+  import { getEventDetail, getEventLogs } from '../api/api'
 	export default{
 		name: "Detail",
     data () {
       return {
         eventDetail: '',
+        eventLogDetail: '',
+        event_obj: '',
       }
     },
     created () {
@@ -145,12 +147,20 @@
       this.getDetails ();
     },
     methods: {
-      getDetails () { //  请求事件详情
-        console.log(this.eventId);
-        getEventDetail(this.eventId)
-          .then((response)=> {
-            console.log(response.data);
+      getDetails () {    // 请求事件详情
+        getEventDetail(
+          this.eventId
+          ).then((response)=> {
+            console.log(response.data)
             this.eventDetail = response.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
+        getEventLogs({   // 事件操作日志
+          event_obj: this.eventId,
+        }).then((response)=> {
+          console.log(response.data.results);
+          this.eventLogDetail = response.data.results;
         }).catch(function (error) {
             console.log(error);
         });

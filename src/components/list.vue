@@ -82,7 +82,7 @@ export default {
         console.log(this.listData.data)
       }).catch(function (error) {
         console.log(error);
-      });
+      }); 
     }
   },
 }

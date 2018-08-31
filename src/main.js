@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router/index'
+//全局状态控制引入
+import store from './store/store';
 // import 'vue/dist/vue.min.js'
 import './assets/bower_components/bootstrap/dist/css/bootstrap.min.css'
 import './assets/bower_components/font-awesome/css/font-awesome.min.css'
@@ -21,5 +23,6 @@ new Vue({
   el: '#app',
   components: { App },
   template: '<App/>',
-  router
+  router,
+  store,
 })

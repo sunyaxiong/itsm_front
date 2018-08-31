@@ -9,7 +9,7 @@
           <img src="../assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>{{username}}</p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -29,12 +29,12 @@
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">HEADER</li>
+        <li class="header"></li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="#">
           <i class="fa fa-dashboard"></i> <span>首页</span></a>
         </li>
-        <li><router-link to="/event/list">
+        <li><router-link to="/event/list" name='side'>
           <i class="fa fa-circle"></i> <span>事件管理</span></router-link>
         </li>
         <li><router-link to='/list'>
@@ -79,6 +79,14 @@
 <script>
 export default {
   name: 'Sidebar',
+  data () {
+    return {
+      username: '',
+    }
+  },
+  created () {
+    this.username = this.$store.state.userInfo.name;
+  }
 }
 </script>
 
