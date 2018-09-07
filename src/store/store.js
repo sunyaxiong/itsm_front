@@ -14,7 +14,8 @@ import cookie from '../assets/js/cookie';
 
 const userInfo = {
             name:cookie.getCookie('name')||'',
-            token:cookie.getCookie('token')||''
+            token:cookie.getCookie('token')||'',
+            user_id:cookie.getCookie('user_id')||'',
         };
 const state = {
     userInfo,

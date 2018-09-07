@@ -6,7 +6,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="../assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="http://192.168.37.139:9999/media/avatar/index.jpeg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>{{username}}</p>
@@ -34,7 +34,7 @@
         <li class="active"><a href="#">
           <i class="fa fa-dashboard"></i> <span>首页</span></a>
         </li>
-        <li><router-link to="/event/list" name='side'>
+        <li><router-link to="/event/list">
           <i class="fa fa-circle"></i> <span>事件管理</span></router-link>
         </li>
         <li><router-link to='/list'>

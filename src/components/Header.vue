@@ -84,22 +84,22 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="../assets/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="http://192.168.37.139:9999/media/avatar/index.jpeg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">{{ username }}</span>
+              <span class="hidden-xs">{{ user.username }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="../assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="http://192.168.37.139:9999/media/avatar/index.jpeg" class="img-circle" alt="User Image">
 
                 <p>
-                  {{ username }} - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  {{ user.username }} - {{ job_title }}
+                  <small>Member since {{ user.date_joined }}</small>
                 </p>
               </li>
               <!-- Menu Body -->
-              <li class="user-body">
+              <!-- <li class="user-body">
                 <div class="row">
                   <div class="col-xs-4 text-center">
                     <a href="#">Followers</a>
@@ -110,16 +110,16 @@
                   <div class="col-xs-4 text-center">
                     <a href="#">Friends</a>
                   </div>
-                </div>
+                </div> -->
                 <!-- /.row -->
-              </li>
+              <!-- </li> -->
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="/user/userinfo/" class="btn btn-default btn-flat">个人信息</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="/login" class="btn btn-default btn-flat">登出</a>
                 </div>
               </li>
             </ul>
@@ -135,25 +135,27 @@
 </template>
 
 <script>
-import { getUser } from '../api/api'  
+import { getUserDetail } from '../api/api'  
 export default {
   name: 'Header',
   data () {
     return {
       username: '',
       user: '',
+      job_title: '',
     }
   },
   created () {
-    this.username = this.$store.state.userInfo.name;
+    this.userId = this.$store.state.userInfo.user_id;
+    this.getData();
   },
   methods: {
     getData () {
-      getUser(
-        this.username
+      getUserDetail(
+        this.userId
       ).then((response)=> {
-        console.log("获取用户profile成功");
         this.user = response.data;
+        this.job_title = response.data.profile.job_title.name
       })
     }
   }

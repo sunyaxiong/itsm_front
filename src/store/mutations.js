@@ -12,7 +12,8 @@ export default {
     [types.SET_INFO] (state) {
         state.userInfo = {
             name:cookie.getCookie('name'),
-            token:cookie.getCookie('token')
+            token:cookie.getCookie('token'),
+            user_id:cookie.getCookie('user_id'),
         }
         console.log(state.userInfo);
     },

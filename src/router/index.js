@@ -5,11 +5,12 @@ import store from '../store/store'
 import Main from '../components/Main'
 import cookie from '../assets/js/cookie';
 // import Index from '@/components/Index'
-import Events from '../components/events/events'
-import Changes from '../components/changes/changes'
+import eventList from '../components/events/eventList'
+import changeList from '../components/changes/changeList'
 import List from '../components/list'
-import Detail from '../components/detail'
+import eventDetail from '../components/events/eventDetail'
 import Login from '../components/login/login'
+import userInfo from '../components/accounts/userInfo'
 
 Vue.use(Router)
 
@@ -32,28 +33,38 @@ var router = new Router({
         title: "ITSM servcie"
       },
       children: [
+        // 用户信息维护
+        {
+          path: '/user/userinfo',
+          name: 'userProfile',
+          component: userInfo
+        },
         // 事件管理
         {
           path: '/event/list',
-          name: 'eventslist',
-          component: List
+          name: 'eventlist',
+          component: eventList,
+          meta: {
+            title: "event list"
+          }
         },
         {
           path: '/rest/event/:eventId',
           name: 'eventdetail',
-          component: Detail
+          component: eventDetail
         },
         
         // 问题管理
         {
-          path: '/issues',
+          path: '/rest/issue',
           name: 'issues',
           component: List
         },
+        // 变更管理
         {
-          path: '/changes',
-          name: 'changes',
-          component: Changes
+          path: '/change/list',
+          name: 'changelist',
+          component: changeList
         },
         {
           path: '/list',
@@ -63,7 +74,7 @@ var router = new Router({
         {
           path: '/eventdetail',
           name: 'eventdetail1111',
-          component: Detail
+          component: eventDetail
         },
       ]
     }

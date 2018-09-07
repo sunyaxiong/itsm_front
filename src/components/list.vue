@@ -66,6 +66,7 @@ export default {
       next: '',
       previous: '',
       listData: '',
+      msg: 'ssss',
     }
   },
   created () {

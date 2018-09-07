@@ -1,4 +1,4 @@
-<template>
+<template> 
   <section class="invoice">
     <!-- title row -->
     <div class="row">
@@ -15,7 +15,8 @@
       <div class="col-sm-4 invoice-col">
         事件名称
         <address>
-          <strong>{{eventDetail.name}}</strong>
+          <a><strong>{{eventDetail.name}}</strong></a>
+          <!-- a标签默认显示，input标签默认隐藏，click事件将hidden属性对调 -->
         </address>
       </div>
       <!-- /.col -->
@@ -133,8 +134,8 @@
 </template>
 <script>
 	export default{
-    props: ["Detail"],
-		name: "contentDetail",
+		props: ["eventDetail", "eventLogDetail"],
+    name: "sectionContentDetail",
     data () {
       return {
         

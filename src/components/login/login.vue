@@ -76,7 +76,8 @@
         console.log(response);
         //本地存储用户信息
         cookie.setCookie('name',this.userName,7);
-        cookie.setCookie('token',response.data.token,7)
+        cookie.setCookie('token',response.data.token,7);
+        cookie.setCookie('user_id',response.data.user_id,7)
         //存储在store
         // 更新store数据
         console.log(that.$store);
@@ -105,6 +106,7 @@
       //清除缓存
       cookie.delCookie('token');
       cookie.delCookie('name');
+      cookie.delCookie('user_id');
       //重新触发store
       //更新store数据
       this.$store.dispatch('setInfo');
