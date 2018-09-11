@@ -27,13 +27,13 @@
               <span class="label label-warning"></span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
+              <li class="header">你有2条系统消息</li>
               <li>
                 <!-- Inner Menu: contains the notifications -->
                 <ul class="menu">
                   <li><!-- start notification -->
                     <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                      <i class="fa fa-users text-aqua"></i> 停机提醒
                     </a>
                   </li>
                   <!-- end notification -->
@@ -50,7 +50,7 @@
               <span class="label label-danger">1</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
+              <li class="header">你有1条待处理任务</li>
               <li>
                 <!-- Inner menu: contains the tasks -->
                 <ul class="menu">
@@ -58,24 +58,24 @@
                     <a href="#">
                       <!-- Task title and progress text -->
                       <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
+                        事件名称
+                        <!--<small class="pull-right">20%</small>-->
                       </h3>
                       <!-- The progress bar -->
-                      <div class="progress xs">
-                        <!-- Change the css width attribute to simulate progress -->
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
+                      <!--<div class="progress xs">-->
+                        <!--&lt;!&ndash; Change the css width attribute to simulate progress &ndash;&gt;-->
+                        <!--<div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"-->
+                             <!--aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">-->
+                          <!--<span class="sr-only">20% Complete</span>-->
+                        <!--</div>-->
+                      <!--</div>-->
                     </a>
                   </li>
                   <!-- end task item -->
                 </ul>
               </li>
               <li class="footer">
-                <a href="#">View all tasks</a>
+                <a href="#">查看全部任务</a>
               </li>
             </ul>
           </li>
@@ -95,7 +95,7 @@
 
                 <p>
                   {{ user.username }} - {{ job_title }}
-                  <small>Member since {{ user.date_joined }}</small>
+                  <small>注册于 {{ user.date_joined }}</small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -135,7 +135,7 @@
 </template>
 
 <script>
-import { getUserDetail } from '../api/api'  
+import { getUserDetail } from '../api/api'
 export default {
   name: 'Header',
   data () {

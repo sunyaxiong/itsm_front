@@ -37,7 +37,7 @@
         <li><router-link to="/event/list">
           <i class="fa fa-circle"></i> <span>事件管理</span></router-link>
         </li>
-        <li><router-link to='/list'>
+        <li><router-link to='/issue/list'>
           <i class="fa fa-flag-o"></i> <span>问题管理</span></router-link>
         </li>
         <li><router-link to="/change/list">

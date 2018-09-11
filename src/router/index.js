@@ -7,12 +7,15 @@ import cookie from '../assets/js/cookie';
 // import Index from '@/components/Index'
 import eventList from '../components/events/eventList'
 import changeList from '../components/changes/changeList'
+import issueList from '../components/issues/issueList'
 import List from '../components/list'
 import eventDetail from '../components/events/eventDetail'
+import changeDetail from '../components/changes/changeDetail.vue'
+import issueDetail from '../components/issues/issueDetail'
 import Login from '../components/login/login'
 import userInfo from '../components/accounts/userInfo'
 
-Vue.use(Router)
+Vue.use(Router);
 
 var router = new Router({
   routes: [
@@ -53,12 +56,17 @@ var router = new Router({
           name: 'eventdetail',
           component: eventDetail
         },
-        
+
         // 问题管理
         {
-          path: '/rest/issue',
+          path: '/issue/list',
           name: 'issues',
-          component: List
+          component: issueList
+        },
+        {
+          path: '/issue/:issueId',
+          name: 'issueDetail',
+          component: issueDetail
         },
         // 变更管理
         {
@@ -67,20 +75,15 @@ var router = new Router({
           component: changeList
         },
         {
-          path: '/list',
-          name: 'list',
-          component: List
-        },
-        {
-          path: '/eventdetail',
-          name: 'eventdetail1111',
-          component: eventDetail
+          path: '/rest/change/:changeId',
+          name: 'changedetail',
+          component: changeDetail
         },
       ]
     }
   ],
   mode:'history'
-})
+});
 
 
 //进行路由判断

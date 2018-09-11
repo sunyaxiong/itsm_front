@@ -1,5 +1,8 @@
 <template>
-  <section class="content container-fluid">
+  <div class="content-wrapper">
+    <sectionContentHeader :header="header"></sectionContentHeader>
+    <noteMessage v-if=msg :msg=msg></noteMessage>
+    <section class="content container-fluid">
     <div class="row">
       <div class="col-xs-12">
         <div class="box">
@@ -29,26 +32,11 @@
                 </tr>
                 <tr v-for="item in listData">
                   <td>{{item.id}}</td>
-                  <td><router-link :to="'/rest/event/' + item.id">{{item.name}}</router-link></td>
+                  <td><router-link :to="'/issue/' + item.id">{{item.name}}</router-link></td>
                   <td>{{item.dt_created}}</td>
                   <td><span class="label label-warning">{{item.state}}</span></td>
                   <td>{{item.description}}</td>
                 </tr>
-              <!-- <tr>
-                <td>183</td>
-                <td><router-link to="/events/detail">网络中断</router-link></td>
-                <td>11-7-2014</td>
-                <td><span class="label label-warning">处理中</span></td>
-                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-              </tr>
-              <tr>
-                <td>219</td>
-                <td><router-link to='eventdetail'>nginx服务不可用</router-link></td>
-                <td>11-7-2014</td>
-                <td><span class="label label-success">结束</span></td>
-                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-              </tr> -->
-
               </tbody>
             </table>
           </div>
@@ -58,19 +46,47 @@
       </div>
     </div>
   </section>
+  </div>
 </template>
 <script>
-export default {
-  props: ["listData", "header", "type"],
-  name: 'sectionContentList',
-  data () {
-    return {
-
+  import sectionContentHeader from '../sectionContentHeader'
+  import noteMessage from '../noteMessage'
+  import { queryIssueList } from '../../api/api'
+  export default {
+    name: 'issueList',
+    data(){
+    	return {
+    		header: "问题",
+        next: '',
+        previous: '',
+        listData: '',
+        msg: '',
+    	}
+    },
+    components: {
+      noteMessage,
+      sectionContentHeader,
+    },
+    created () {
+      this.getData();
+    },
+    methods: {
+    getData() {
+      queryIssueList({
+        // 参数
+      }).then((response)=> {
+        console.log(this);
+        this.listData = response.data.results;
+        console.log(this.listData)
+      }).catch(function (error) {
+        console.log(error);
+        self.msg = error;
+      });
     }
   },
-  created() {
-    console.log(11)
   }
-}
 </script>
-<style></style>
+
+<style>
+
+</style>
