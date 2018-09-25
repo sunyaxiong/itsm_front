@@ -29,7 +29,7 @@
       <!-- /.col -->
       <div class="col-sm-4 invoice-col">
         状态
-        <address @click="eventRefHidden($event)">
+        <address>
           <a><strong>{{changeDetail.state}}</strong></a><br>
         </address>
         <address hidden>
@@ -67,7 +67,7 @@
       <!-- /.col -->
       <div class="col-sm-4 invoice-col">
         创建自
-        <address @click="eventRefHidden($event)">
+        <address>
           <a><strong>{{changeDetail.create_by}}</strong></a><br>
         </address>
         <address hidden>
@@ -102,7 +102,7 @@
             <h3 class="box-title"><i class="fa fa-edit"></i>填写处理意见</h3>
             <div class="pull-right box-tools">
               <button type="button" class="btn btn-success" @click="submitMyOpinion()">
-                  <i class="fa fa-submit"></i>同意
+                  <i class="fa fa-submit"></i>提交或同意
               </button>
               <button type="button" class="btn btn-cancel" style="color:red">
                   <i class="fa fa-submit"></i>拒绝
@@ -158,10 +158,10 @@
       <!-- accepted payments column -->
       <div class="col-xs-6">
         <p class="lead">Payment Methods:</p>
-        <img src="../../assets/dist/img/credit/visa.png" alt="Visa">
-        <img src="../../assets/dist/img/credit/mastercard.png" alt="Mastercard">
-        <img src="../../assets/dist/img/credit/american-express.png" alt="American Express">
-        <img src="../../assets/dist/img/credit/paypal2.png" alt="Paypal">
+        <img src="../../../static/dist/img/credit/visa.png" alt="Visa">
+        <img src="../../../static/dist/img/credit/mastercard.png" alt="Mastercard">
+        <img src="../../../static/dist/img/credit/american-express.png" alt="American Express">
+        <img src="../../../static/dist/img/credit/paypal2.png" alt="Paypal">
 
         <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
           Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg
@@ -290,9 +290,14 @@
         this.cancelUpdate(e)
       },
 
+      flowNext() {
+        console.log("下一步")
+      },
+
       // 提交操作记录
       submitMyOpinion() {
-        console.log("start 提交意见");
+        let that = this;
+        console.log("变更管理开始提交意见");
 
         let params = new Object();
         params.user = this.userId;
@@ -302,15 +307,18 @@
 
         postChangeLogs (params
           ).then(function (response) {
-            console.log("事件记录提交成功");
-            console.log(response.data);
-            location.reload()
+            console.log("变更记录提交成功", that.changeId);
+            console.log(response);
+            // 记录提交成功，流程跳转，即修改变更记录的stage和status
+            that.flowNext();
+            // location.reload()
           }).catch(function (error){
             console.log(error);
             console.log(params);
             // this.msg = error.data
-          })
-      }
+          });
+//        this.flowNext();
+      },
     }
   }
 </script>

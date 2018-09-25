@@ -23,7 +23,7 @@
         <address hidden>
           <input type="text" name="name" v-model="eventDetail.name" />
           <i class="fa fa-fw fa-check" @click="confirmUpdate($event)"></i>
-          <i class="fa fa-fw fa-close" @click="concelUpdate($event)"></i>
+          <i class="fa fa-fw fa-close" @click="cancelUpdate($event)"></i>
         </address>
       </div>
       <!-- /.col -->
@@ -35,7 +35,7 @@
         <address hidden>
           <input type="text" name="state" v-model="eventDetail.state" />
           <i class="fa fa-fw fa-check" @click="confirmUpdate($event)"></i>
-          <i class="fa fa-fw fa-close" @click="concelUpdate($event)"></i>
+          <i class="fa fa-fw fa-close" @click="cancelUpdate($event)"></i>
         </address>
       </div>
       <!-- /.col -->
@@ -47,7 +47,7 @@
         <address hidden>
           <input type="text" name="located_in" v-model="eventDetail.located_in" />
           <i class="fa fa-fw fa-check" @click="confirmUpdate($event)"></i>
-          <i class="fa fa-fw fa-close" @click="concelUpdate($event)"></i>
+          <i class="fa fa-fw fa-close" @click="cancelUpdate($event)"></i>
         </address>
       </div>
       <!-- /.col -->
@@ -61,19 +61,19 @@
         <address hidden field="department">
           <input type="text" name="department" v-model="eventDetail.department" />
           <i class="fa fa-fw fa-check" @click="confirmUpdate($event)"></i>
-          <i class="fa fa-fw fa-close" @click="concelUpdate($event)"></i>
+          <i class="fa fa-fw fa-close" @click="cancelUpdate($event)"></i>
         </address>
       </div>
       <!-- /.col -->
       <div class="col-sm-4 invoice-col">
         创建自
-        <address @click="eventRefHidden($event)">
+        <address>
           <a><strong>{{eventDetail.create_by}}</strong></a><br>
         </address>
         <address hidden>
           <input type="text" name="create_by" v-model="eventDetail.create_by" />
           <i class="fa fa-fw fa-check" @click="confirmUpdate($event)"></i>
-          <i class="fa fa-fw fa-close" @click="concelUpdate($event)"></i>
+          <i class="fa fa-fw fa-close" @click="cancelUpdate($event)"></i>
         </address>
       </div>
       <!-- /.col -->
@@ -86,7 +86,7 @@
           <div>
             <input type="text" name="emergency_degree" v-model="eventDetail.emergency_degree" />
             <i class="fa fa-fw fa-check" @click="confirmUpdate($event)"></i>
-            <i class="fa fa-fw fa-close" @click="concelUpdate($event)"></i>
+            <i class="fa fa-fw fa-close" @click="cancelUpdate($event)"></i>
           </div>
         </address>
       </div>
@@ -95,13 +95,13 @@
     <div class="row invoice-info">
       <div class="col-sm-4 invoice-col">
         上次更新
-        <address @click="eventRefHidden($event)">
+        <address>
           <a><strong>{{eventDetail.dt_updated}}</strong></a>
         </address>
         <address hidden field="department">
           <input type="text" name="dt_updated" v-model="eventDetail.dt_updated" />
           <i class="fa fa-fw fa-check" @click="confirmUpdate($event)"></i>
-          <i class="fa fa-fw fa-close" @click="concelUpdate($event)"></i>
+          <i class="fa fa-fw fa-close" @click="cancelUpdate($event)"></i>
         </address>
       </div>
       <!-- /.col -->
@@ -113,7 +113,7 @@
         <address hidden>
           <input type="text" name="service_level" v-model="eventDetail.service_level" />
           <i class="fa fa-fw fa-check" @click="confirmUpdate($event)"></i>
-          <i class="fa fa-fw fa-close" @click="concelUpdate($event)"></i>
+          <i class="fa fa-fw fa-close" @click="cancelUpdate($event)"></i>
         </address>
       </div>
       <!-- /.col -->
@@ -126,7 +126,7 @@
           <div>
             <input type="text" name="classify" v-model="eventDetail.classify_name" />
             <i class="fa fa-fw fa-check" @click="confirmUpdate($event)"></i>
-            <i class="fa fa-fw fa-close" @click="concelUpdate($event)"></i>
+            <i class="fa fa-fw fa-close" @click="cancelUpdate($event)"></i>
           </div>
         </address>
       </div>
@@ -265,12 +265,12 @@
         msg: '',
         header: '事件',
         my_opinion: "",
-        eventAtt: "",
+        eventAtt: ""
       }
     },
     components: {
       sectionContentHeader,
-      noteMessage,
+      noteMessage
     },
     created () {
       this.userId = this.$store.state.userInfo.user_id;
@@ -315,7 +315,7 @@
         e.target.parentNode.parentNode.hidden=true;
         e.target.parentNode.parentNode.parentNode.children[1].hidden=false;
       },
-      concelUpdate (e) {
+      cancelUpdate (e) {
         console.log("执行取消: ", e);
         e.target.parentNode.hidden=true;
         e.target.parentNode.parentNode.children[0].hidden=false;
@@ -335,28 +335,28 @@
           console.log(error);
           this.msg = error
         });
-        this.concelUpdate(e)
+        this.cancelUpdate(e)
       },
       submitMyOpinion() {
         console.log("start 提交意见");
 
-        let params = new Object()
-        params.user = this.userId
-        params.event_obj = this.eventId
-        params.content = this.my_opinion
-        console.log(params)
+        let params = new Object();
+        params.user = this.userId;
+        params.event_obj = this.eventId;
+        params.content = this.my_opinion;
+        console.log(params);
 
         postEventLogs (params
           ).then(function (response) {
-            console.log("事件记录提交成功")
-            console.log(response.data)
+            console.log("事件记录提交成功");
+            console.log(response.data);
             // this.getEventLogs({
             //   event_obj: this.eventId
             // })
             location.reload()
           }).catch(function (error){
-            console.log(error)
-            console.log(params)
+            console.log(error);
+            console.log(params);
             // this.msg = error.data
           })
       }

@@ -8,10 +8,10 @@ import cookie from '../assets/js/cookie';
 import eventList from '../components/events/eventList'
 import changeList from '../components/changes/changeList'
 import issueList from '../components/issues/issueList'
-import List from '../components/list'
 import eventDetail from '../components/events/eventDetail'
-import changeDetail from '../components/changes/changeDetail.vue'
+import changeDetail from '../components/changes/changeDetail'
 import issueDetail from '../components/issues/issueDetail'
+import eventCreate from '../components/events/eventCreate'
 import Login from '../components/login/login'
 import userInfo from '../components/accounts/userInfo'
 
@@ -55,6 +55,14 @@ var router = new Router({
           path: '/rest/event/:eventId',
           name: 'eventdetail',
           component: eventDetail
+        },
+        {
+          path: '/event/create',
+          name: 'event_create',
+          component: eventCreate,
+          meta: {
+            title: "创建事件"
+          }
         },
 
         // 问题管理

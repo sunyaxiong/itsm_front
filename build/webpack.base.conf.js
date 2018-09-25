@@ -8,7 +8,7 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-
+// var webpack = require("webpack")
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
@@ -27,8 +27,20 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      'static': resolve(__dirname, 'static/'),
+      // 'jquery': path.resolve(__dirname, '../src/assets/bower_components/jquery/dist/jquery.min.js')
+      // 'jquery': 'jquery/dist/jquery.min.js'
     }
   },
+  // plugins: [
+  //   // 3. 配置全局使用 jquery
+  //   new webpack.ProvidePlugin({
+  //       $: "jquery",
+  //       jQuery: "jquery",
+  //       jquery: "jquery",
+  //       "window.jQuery": "jquery"
+  //   })
+  // ],
   module: {
     rules: [
       {

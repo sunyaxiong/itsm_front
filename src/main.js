@@ -5,18 +5,10 @@ import App from './App'
 import router from './router/index'
 //全局状态控制引入
 import store from './store/store';
-// import 'vue/dist/vue.min.js'
-import './assets/bower_components/bootstrap/dist/css/bootstrap.min.css'
-import './assets/bower_components/font-awesome/css/font-awesome.min.css'
-import './assets/bower_components/Ionicons/css/ionicons.min.css'
-import './assets/dist/css/AdminLTE.min.css'
-import './assets/dist/css/skins/skin-blue.min.css'
-import './assets/bower_components/jquery/dist/jquery.min.js'
-import './assets/bower_components/bootstrap/dist/js/bootstrap.min.js'
-import './assets/dist/js/adminlte.min.js'
+
 
 // Vue.use(Router)
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
@@ -25,4 +17,4 @@ new Vue({
   template: '<App/>',
   router,
   store,
-})
+});
