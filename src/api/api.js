@@ -10,6 +10,10 @@ export const queryEventList = params => { return axios.get(`${host}/rest/event/`
 export const getEventDetail = eventId => {
 	return axios.get(`${host}/rest/event/${eventId}`+'/')
 };
+// 创建事件
+export const createEvent = params => {
+	return axios.post(`${host}/rest/event/`, params)
+};
 // 事件更新接口
 export const putEventDetail = (eventId, params) => {
 	return axios.put(`${host}/rest/event/${eventId}`+'/', params)
@@ -61,6 +65,10 @@ export const postChangeLogs = params => {
 
 // 用户认证、登陆
 export const login = params => { return axios.post(`${host}/login/`, params) };
+
+export const getUserList = params => {
+	return axios.get(`${host}/rest/user/`, params)
+};
 
 export const getUserDetail = userId => {
 	return axios.get(`${host}/rest/user/${userId}` + '/')

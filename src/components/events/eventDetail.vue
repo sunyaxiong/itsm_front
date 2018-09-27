@@ -1,6 +1,6 @@
 <template>
   <div class="content-wrapper">
-    <sectionContentHeader :header="header"></sectionContentHeader>
+    <sectionContentHeader :header="header" :headerIsShow="headerIsShow"></sectionContentHeader>
     <noteMessage v-if=msg :msg=msg></noteMessage>
     <section class="invoice">
     <!-- title row -->
@@ -265,7 +265,8 @@
         msg: '',
         header: '事件',
         my_opinion: "",
-        eventAtt: ""
+        eventAtt: "",
+        headerIsShow: "ok",
       }
     },
     components: {

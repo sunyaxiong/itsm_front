@@ -1,9 +1,9 @@
 <template>
   <div class="content-wrapper">
-    <sectionContentHeader :header="header"></sectionContentHeader>
+    <sectionContentHeader :header="header" headerIsShow="headerIsShow"></sectionContentHeader>
     <noteMessage v-if=msg :msg=msg></noteMessage>
     <sectionContentList :listData=listData :header=header></sectionContentList>
-  </div>   
+  </div>
 </template>
 <script>
   import sectionContentHeader from '../sectionContentHeader'
@@ -15,6 +15,7 @@
     data(){
     	return {
     		header: "事件",
+        headerIsShow: "ok",
         next: '',
         previous: '',
         listData: '',
@@ -40,7 +41,7 @@
       }).catch(function (error) {
         console.log(error);
         self.msg = error;
-      }); 
+      });
     }
   },
   }

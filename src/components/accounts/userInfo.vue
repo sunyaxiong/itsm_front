@@ -1,6 +1,6 @@
 <template>
   <div class="content-wrapper">
-    <sectionContentHeader :header=header></sectionContentHeader>
+    <sectionContentHeader :header=header :headerIsShow="headerIsShow"></sectionContentHeader>
     <noteMessage v-if=msg :msg=msg></noteMessage>
     <section class="content">
       <div class="row">
@@ -42,6 +42,7 @@
 		name: "userInfo",
     data () {
       return {
+        headerIsShow: '',
         eventDetail: '',
         eventLogDetail: '',
         event_obj: '',
@@ -83,5 +84,5 @@
 	}
 </script>
 <style>
-	
+
 </style>

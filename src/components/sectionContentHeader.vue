@@ -2,7 +2,7 @@
 	<section class="content-header">
       <h1>
         {{ header }}管理
-        <small></small>
+        <small><a href="/event/create/" v-show="headerIsShow">创建{{header}}</a> </small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -12,7 +12,7 @@
 </template>
 <script>
 export default {
-  props: ["header"],
+  props: ["header", "headerIsShow"],
   name: 'sectionContentHeader',
 }
 </script>
