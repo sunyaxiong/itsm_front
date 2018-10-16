@@ -32,7 +32,7 @@
                 </tr>
                 <tr v-for="item in listData">
                   <td>{{item.id}}</td>
-                  <td><router-link :to="'/rest/change/' + item.id">{{item.name}}</router-link></td>
+                  <td><router-link :to="'/release/' + item.id">{{item.name}}</router-link></td>
                   <td>{{item.dt_created}}</td>
                   <td><span class="label label-warning">{{item.state}}</span></td>
                   <td>{{item.description}}</td>
@@ -67,12 +67,12 @@
   import sectionContentHeader from '../sectionContentHeader'
   import noteMessage from '../noteMessage'
   import sectionContentList from '../sectionContentList'
-  import { queryChangeList } from '../../api/api'
+  import { queryReleaseList } from '../../api/api'
   export default {
-    name: 'changeList',
+    name: 'releaseList',
     data(){
     	return {
-    		header: "变更",
+    		header: "发布",
         next: '',
         previous: '',
         listData: '',
@@ -89,14 +89,16 @@
     },
     methods: {
     getData() {
-      queryChangeList({
+      var that = this;
+      queryReleaseList({
         // 参数
       }).then((response)=> {
+        console.log(this);
         this.listData = response.data.results;
         console.log(this.listData)
       }).catch(function (error) {
-        console.log(error);
-        self.msg = error;
+        console.log(error.response);
+        that.msg = error.response.data;
       });
     }
   },

@@ -7,10 +7,12 @@ import cookie from '../assets/js/cookie';
 // import Index from '@/components/Index'
 import eventList from '../components/events/eventList'
 import changeList from '../components/changes/changeList'
+import releaseList from '../components/releases/releaseList'
 import issueList from '../components/issues/issueList'
 import eventDetail from '../components/events/eventDetail'
 import changeDetail from '../components/changes/changeDetail'
 import issueDetail from '../components/issues/issueDetail'
+import releaseDetail from '../components/releases/releaseDetail'
 import eventCreate from '../components/events/eventCreate'
 import Login from '../components/login/login'
 import userInfo from '../components/accounts/userInfo'
@@ -86,6 +88,17 @@ var router = new Router({
           path: '/rest/change/:changeId',
           name: 'changedetail',
           component: changeDetail
+        },
+        // 发布管理
+        {
+          path: '/release/list',
+          name: 'releaselist',
+          component: releaseList
+        },
+        {
+          path: '/release/:releaseId',
+          name: 'releasedetail',
+          component: releaseDetail
         },
       ]
     }

@@ -43,11 +43,11 @@
         <li><router-link to="/change/list">
           <i class="fa fa-exchange"></i> <span>变更管理</span></router-link>
         </li>
-        <li><router-link to="/release//list">
+        <li><router-link to="/release/list">
           <i class="fa fa-map"></i> <span>发布管理</span></router-link>
         </li>
-        <li><router-link to="/config/list">
-          <i class="fa fa-map"></i> <span>配置管理</span></router-link>
+        <!--<li><router-link to="/config/list">-->
+          <!--<i class="fa fa-map"></i> <span>配置管理</span></router-link>-->
         </li>
         <li><router-link to="/CMDB/list">
           <i class="fa fa-map"></i> <span>CMDB</span></router-link>

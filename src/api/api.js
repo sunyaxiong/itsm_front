@@ -16,7 +16,7 @@ export const createEvent = params => {
 };
 // 事件更新接口
 export const putEventDetail = (eventId, params) => {
-	return axios.put(`${host}/rest/event/${eventId}`+'/', params)
+	return axios.patch(`${host}/rest/event/${eventId}`+'/', params)
 };
 
 // 事件操作记录列表
@@ -62,6 +62,18 @@ export const postChangeLogs = params => {
 	return axios.post(`${host}/rest/change_log/`, params)
 };
 
+// --------------- 发布相关接口
+export const queryReleaseList = params => {
+  return axios.get(`${host}/rest/releases/`, params)
+};
+// 发布详情
+export const getReleaseDetail = releaseId => {
+	return axios.get(`${host}/rest/releases/${releaseId}`+'/')
+};
+// 发布更新
+export const putReleaseDetail = (releaseId, params) => {
+	return axios.put(`${host}/rest/releases/${releaseId}`+'/', params)
+};
 
 // 用户认证、登陆
 export const login = params => { return axios.post(`${host}/login/`, params) };
